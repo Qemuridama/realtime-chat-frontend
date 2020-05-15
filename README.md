@@ -6,6 +6,7 @@
 
 - [Packages](#packages)
 - [Commitlint Usage](#commitlint-usage)
+- [Docker](#docker)
 - [To do](#to-do)
 
 ## Packages
@@ -43,6 +44,14 @@
 
   ```bash
   feat(blog): add comment section
+  ```
+
+## Docker
+
+  - On command line, do the following command:
+
+ ```bash
+  $ sudo docker-compose up
   ```
 
 ## qemuridama
