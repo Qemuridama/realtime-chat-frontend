@@ -6,8 +6,8 @@
 
 - [Packages](#packages)
 - [Commitlint Usage](#commitlint-usage)
-- [Docker](#docker)
 - [To do](#to-do)
+- [qemuridama](#qemuridama)
 
 ## Packages
 
@@ -46,23 +46,15 @@
   feat(blog): add comment section
   ```
 
-## Docker
+## To do
 
-  - On command line, do the following command:
-
- ```bash
-  $ sudo docker-compose up
-  ```
+  1. Implement CHAT features;
+  2. Develop UI;
+  3. Implement docker and docker-compose;
+  4. and more;
 
 ## qemuridama
 
 <p align="center">
   <img src="https://media.discordapp.net/attachments/704678261556248660/710857515989991604/unknown.png">
 </p>
-
-## To do
-
-  ```
-  1. Implement CHAT features.
-  2. develop UI.
-  ```
