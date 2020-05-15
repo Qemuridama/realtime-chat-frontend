@@ -21,6 +21,7 @@
   - editorconfig
   - commitlint/husky
   - tsconfigs
+  - reach router
 
 ## Commitlint usage
 
@@ -43,6 +44,12 @@
   ```bash
   feat(blog): add comment section
   ```
+
+## qemuridama
+
+<p align="center">
+  <img src="https://media.discordapp.net/attachments/704678261556248660/710857515989991604/unknown.png">
+</p>
 
 ## To do
 
