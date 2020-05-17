@@ -93,7 +93,7 @@ export const Input = styled.input`
   }
 `;
 
-export const InputMessage = styled.textarea`
+export const InputMessage = styled.input`
   width: 80%;
   height: 100px;
   background: transparent;
