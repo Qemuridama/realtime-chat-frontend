@@ -12,20 +12,16 @@ import {
   Author,
 } from './Chat.styles';
 
+import MessagesInterface from '~/interfaces/message';
+
 const socket: SocketIOClient.Socket = io('http://localhost:3333');
 socket.on('connect', () => console.log('[IO] New connection on server! Be welcome! :)'));
 
 const ChatComponent: React.FC = () => {
 
-  // const INITIAL_VALUES: any = {
-  // author: '',
-  // content: '',
-  // }
-
-  const [arrMessages, setArrMessages] = useState<any[]>([]);
+  const [arrMessages, setArrMessages] = useState<MessagesInterface[]>([]);
   const [author, setAuthor] = useState<any>('');
   const [content, setContent] = useState<any>('');
-  // const [inputValues, setInputValues] = useState<any>(INITIAL_VALUES);
 
   const handleContentChange = (event: any) => {
     setContent(event.target.value);
@@ -35,26 +31,15 @@ const ChatComponent: React.FC = () => {
     setAuthor(event.target.value);
   }
 
-  // const handleChange = (event: any) => {
-  // const { name, value } = event.target
-  // const messageObject = {
-  // ...arrMessages,
-  // [name]: value,
-  // }
-  // console.log(messageObject);
-  // setInputValues()
-  // console.log('inputValues:', inputValues);
-  // }
-
-  // MOCK
   const handleSubmit = (event: any) => {
     event.preventDefault()
     if (author.length && content.length) {
       setArrMessages((prevState: any) => {
-        let message: any = {
+        let message: MessagesInterface = {
           author,
           content,
         }
+        socket.emit('new_message', message)
         return [
           ...prevState,
           message
@@ -65,7 +50,7 @@ const ChatComponent: React.FC = () => {
   }
 
   useEffect((): any => {
-    const handleNewMessage = (msg: string) => setArrMessages([...arrMessages, msg])
+    const handleNewMessage = (msg: MessagesInterface) => setArrMessages([...arrMessages, msg])
     socket.on('new_message', handleNewMessage)
 
     return () => socket.off('new_message', handleNewMessage)
