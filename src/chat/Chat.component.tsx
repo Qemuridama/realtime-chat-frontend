@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-import { 
+import {
   Title,
   Input,
   List,
@@ -41,7 +41,7 @@ const ChatComponent: React.FC = () => {
   // ...arrMessages,
   // [name]: value,
   // }
-  // console.log(messageObject); 
+  // console.log(messageObject);
   // setInputValues()
   // console.log('inputValues:', inputValues);
   // }
@@ -49,11 +49,17 @@ const ChatComponent: React.FC = () => {
   // MOCK
   const handleSubmit = (event: any) => {
     event.preventDefault()
-    if (content.trim()) {
-      setArrMessages([...arrMessages, {
-        author,
-        content,
-      }])
+    if (author.length && content.length) {
+      setArrMessages((prevState: any) => {
+        let message: any = {
+          author,
+          content,
+        }
+        return [
+          ...prevState,
+          message
+        ]
+      })
       setContent('')
     }
   }
@@ -71,25 +77,25 @@ const ChatComponent: React.FC = () => {
       <List>
         {arrMessages.map((message: any, index: any) => (
         <ListItems key={index}>
-        <Author>{message.author}</Author>
-        <Span>{message.content}</Span>
+          <Author>{message.author}</Author>
+          <Span>{message.content}</Span>
         </ListItems>
         ))}
       </List>
       <Form onSubmit={handleSubmit}>
         <Input
-        type="text"
-        name="author"
-        value={author}
-        placeholder="Digite o autor"
-        onChange={handleAuthorChange}
+          type="text"
+          name="author"
+          value={author}
+          placeholder="Digite o autor"
+          onChange={handleAuthorChange}
         />
         <Input
-        type="text"
-        name="content"
-        value={content}
-        placeholder="Digite sua mensagem"
-        onChange={handleContentChange}
+          type="text"
+          name="content"
+          value={content}
+          placeholder="Digite sua mensagem"
+          onChange={handleContentChange}
         />
         <Button type="submit">Enviar</Button>
       </Form>
