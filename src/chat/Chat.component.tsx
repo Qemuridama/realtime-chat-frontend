@@ -40,6 +40,7 @@ const ChatComponent: React.FC = () => {
           content,
         }
         socket.emit('new_message', message)
+
         return [
           ...prevState,
           message
@@ -50,8 +51,8 @@ const ChatComponent: React.FC = () => {
   }
 
   useEffect((): any => {
-    const handleNewMessage = (msg: MessagesInterface) => setArrMessages([...arrMessages, msg])
-    socket.on('new_message', handleNewMessage)
+    const handleNewMessage = (msg: MessagesInterface) =>
+      setArrMessages([...arrMessages, msg])
 
     return () => socket.off('new_message', handleNewMessage)
   }, [arrMessages])
