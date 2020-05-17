@@ -9,6 +9,7 @@ import {
   List,
   ListItems,
   Span,
+  ContainerMessages,
   Form,
   Button,
   Author,
@@ -68,14 +69,16 @@ const ChatComponent: React.FC = () => {
   return (
     <Container>
       <Title>Hello from chat component!</Title>
-      <List>
-        {arrMessages.map((message: any, index: any) => (
-          <ListItems key={index}>
+      <ContainerMessages>
+        <List>
+          {arrMessages.map((message: any, index: any) => (
+            <ListItems key={index}>
             <Author>{message.author}</Author>
             <Span>{message.content}</Span>
           </ListItems>
-        ))}
-      </List>
+          ))}
+        </List>
+      </ContainerMessages>
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
