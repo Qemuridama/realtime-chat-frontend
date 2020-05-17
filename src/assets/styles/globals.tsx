@@ -14,6 +14,13 @@ body {
   font-family: 'Source Sans Pro', 'Segoe UI', 'Roboto';
   margin: 0;
 }
-`
 
-export default GlobalStyle
+::placeholder{
+  font-size: 14px;
+  color: #999a;
+  font-family: 'Source Sans Pro', 'Segoe UI', 'Roboto';
+}
+
+`;
+
+export default GlobalStyle;
