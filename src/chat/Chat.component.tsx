@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
 import {
+  Container,
   Title,
   Input,
+  InputMessage,
   List,
   ListItems,
   Span,
@@ -65,7 +67,7 @@ const ChatComponent: React.FC = () => {
   }, [arrMessages]);
 
   return (
-    <>
+    <Container>
       <Title>Hello from chat component!</Title>
       <ContainerMessages>
         <List>
@@ -85,8 +87,7 @@ const ChatComponent: React.FC = () => {
           placeholder="Digite o autor"
           onChange={handleAuthorChange}
         />
-        <Input
-          type="text"
+        <InputMessage
           name="content"
           value={content}
           placeholder="Digite sua mensagem"
@@ -94,7 +95,7 @@ const ChatComponent: React.FC = () => {
         />
         <Button type="submit">Enviar</Button>
       </Form>
-    </>
+    </Container>
   );
 };
 
