@@ -16,47 +16,53 @@ import {
 import MessagesInterface from '~/interfaces/message';
 
 const socket: SocketIOClient.Socket = io('http://localhost:3333');
-socket.on('connect', () => console.log('[IO] New connection on server! Be welcome! :)'));
+socket.on('connect', () =>
+  console.log('[IO] New connection on server! Be welcome! :)')
+);
 
 const ChatComponent: React.FC = () => {
-
   const [arrMessages, setArrMessages] = useState<MessagesInterface[]>([]);
-  const [author, setAuthor] = useState<any>('');
-  const [content, setContent] = useState<any>('');
+  const [author, setAuthor] = useState<string>('');
+  const [content, setContent] = useState<string>('');
 
   const handleContentChange = (event: any) => {
     setContent(event.target.value);
-  }
+  };
 
   const handleAuthorChange = (event: any) => {
     setAuthor(event.target.value);
-  }
+  };
 
   const handleSubmit = (event: any) => {
-    event.preventDefault()
+    event.preventDefault();
     if (author.length && content.length) {
-      setArrMessages((prevState: any) => {
-        let message: MessagesInterface = {
-          author,
-          content,
-        }
-        socket.emit('new_message', message)
+      let message: MessagesInterface = {
+        author,
+        content,
+      };
+      socket.emit('new_message', message);
 
-        return [
-          ...prevState,
-          message
-        ]
-      })
-      setContent('')
+      setContent('');
     }
-  }
+  };
 
   useEffect((): any => {
     const handleNewMessage = (msg: MessagesInterface) =>
-      setArrMessages([...arrMessages, msg])
+      setArrMessages([...arrMessages, msg]);
 
-    return () => socket.off('new_message', handleNewMessage)
-  }, [arrMessages])
+    const loadInitialMessages = (arrMessages: MessagesInterface[]) =>
+      setArrMessages(arrMessages);
+
+    socket.on('initial_messages', loadInitialMessages);
+
+    socket.on('new_message', handleNewMessage);
+
+    return () => {
+      socket.off('initial_messages', loadInitialMessages);
+
+      socket.off('new_message', handleNewMessage);
+    };
+  }, [arrMessages]);
 
   return (
     <>
@@ -90,9 +96,6 @@ const ChatComponent: React.FC = () => {
       </Form>
     </>
   );
-}
+};
 
-export {
-  ChatComponent,
-}
-
+export { ChatComponent };
