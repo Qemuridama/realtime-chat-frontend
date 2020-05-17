@@ -21,8 +21,8 @@ socket.on('connect', () =>
 
 const ChatComponent: React.FC = () => {
   const [arrMessages, setArrMessages] = useState<MessagesInterface[]>([]);
-  const [author, setAuthor] = useState<any>('');
-  const [content, setContent] = useState<any>('');
+  const [author, setAuthor] = useState<string>('');
+  const [content, setContent] = useState<string>('');
 
   const handleContentChange = (event: any) => {
     setContent(event.target.value);
@@ -49,11 +49,18 @@ const ChatComponent: React.FC = () => {
     const handleNewMessage = (msg: MessagesInterface) =>
       setArrMessages([...arrMessages, msg]);
 
-    socket.on('new_message', (msg: any) =>
-      setArrMessages([...arrMessages, msg])
-    );
+    const loadInitialMessages = (arrMessages: MessagesInterface[]) =>
+      setArrMessages(arrMessages);
 
-    return () => socket.off('new_message', handleNewMessage);
+    socket.on('initial_messages', loadInitialMessages);
+
+    socket.on('new_message', handleNewMessage);
+
+    return () => {
+      socket.off('initial_messages', loadInitialMessages);
+
+      socket.off('new_message', handleNewMessage);
+    };
   }, [arrMessages]);
 
   return (
