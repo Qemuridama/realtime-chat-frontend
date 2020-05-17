@@ -24,12 +24,14 @@ export const Span = styled.span`
 
 `
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+export const ContainerMessages = styled.div`
+  overflow-y: auto;
+  max-height: calc(100vh - 84px);
+`
 
+export const Form = styled.form`
+  position: fixed;
+  bottom: 0;
 `
 
 export const Button = styled.button`
