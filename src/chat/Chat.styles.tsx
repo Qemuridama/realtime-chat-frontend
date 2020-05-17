@@ -61,6 +61,11 @@ export const Span = styled.span`
   font-size: 1em;
 `;
 
+export const ContainerMessages = styled.div`
+  overflow-y: auto;
+  max-height: calc(100vh - 84px);
+`
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
