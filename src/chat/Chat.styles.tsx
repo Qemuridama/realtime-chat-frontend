@@ -55,6 +55,10 @@ export const ListItems = styled.li`
   margin-bottom: 10px;
   padding: 10px;
   border-bottom: 1px solid #ececec;
+
+  &.owner {
+    text-align: right;
+  }
 `;
 
 export const Span = styled.span`
@@ -64,7 +68,7 @@ export const Span = styled.span`
 export const ContainerMessages = styled.div`
   overflow-y: auto;
   max-height: calc(100vh - 84px);
-`
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -86,6 +90,11 @@ export const Input = styled.input`
   color: ${colors.lightCoral};
   transition: 0.2s all linear;
   margin-bottom: 5px;
+
+  &.hidden {
+    display: none;
+    visibility: none;
+  }
 
   &:focus {
     box-shadow: 0 0 12px ${colors.lightCoralRGBA};
