@@ -68,11 +68,11 @@ const ChatComponent: React.FC = () => {
 
   return (
     <Container>
-      <Title>Hello from chat component!</Title>
+      <Title>Be welcome to the qemuridama realtime-chat</Title>
       <ContainerMessages>
         <List>
           {arrMessages.map((message: any, index: any) => (
-            <ListItems key={index}>
+          <ListItems key={index}>
             <Author>{message.author}</Author>
             <Span>{message.content}</Span>
           </ListItems>
