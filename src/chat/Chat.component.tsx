@@ -84,7 +84,7 @@ const ChatComponent: React.FC = () => {
 
   return (
     <Container>
-      <Title>Hello from chat component!</Title>
+      <Title>Be welcome to the qemuridama realtime-chat</Title>
       <ContainerMessages>
         <List>
           {arrMessages.map((message: any, index: any) => (
