@@ -91,6 +91,7 @@ const ChatComponent: React.FC = () => {
             <ListItems
               key={index}
               className={`${author === message.author ? 'owner' : 'other'}`}
+              // owner={`${author && message.author}`}
             >
               <Author>{message.author}</Author>
               <Span>{message.content}</Span>
