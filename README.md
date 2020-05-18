@@ -6,6 +6,8 @@
 
 - [Packages](#packages)
 - [Commitlint Usage](#commitlint-usage)
+- [Running Project](#running-project)
+- [Running Tests](#running-tests)
 - [To do](#to-do)
 - [qemuridama](#qemuridama)
 
@@ -46,12 +48,23 @@
   feat(blog): add comment section
   ```
 
+## Running project
+
+  ```
+  $ yarn start
+  ```
+
+## Running tests
+
+  ```
+  $ yarn test
+  ```
+
 ## To do
 
-  1. Implement CHAT features;
-  2. Develop UI;
+  1. Add more features;
+  2. Do more tests;
   3. Implement docker and docker-compose;
-  4. and more;
 
 ## qemuridama
 
