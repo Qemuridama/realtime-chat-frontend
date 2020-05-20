@@ -26,6 +26,19 @@ const ChatComponent: React.FC = () => {
   const [arrMessages, setArrMessages] = useState<MessagesInterface[]>([]);
   const [author, setAuthor] = useState<string>('');
   const [content, setContent] = useState<string>('');
+  const [visibility, setVisibility] = useState<string>('');
+
+  useEffect(() => {
+    getAuthor();
+  }, []);
+
+  const getAuthor = () => {
+    let author = localStorage.getItem('Author');
+    if (author !== null) {
+      setVisibility('hidden');
+      setAuthor(author);
+    }
+  };
 
   const handleContentChange = (event: any) => {
     setContent(event.target.value);
@@ -44,6 +57,9 @@ const ChatComponent: React.FC = () => {
       };
       socket.emit('new_message', message);
 
+      localStorage.setItem('Author', author);
+      setVisibility('hidden');
+
       setContent('');
     }
   };
@@ -56,12 +72,10 @@ const ChatComponent: React.FC = () => {
       setArrMessages(arrMessages);
 
     socket.on('initial_messages', loadInitialMessages);
-
     socket.on('new_message', handleNewMessage);
 
     return () => {
       socket.off('initial_messages', loadInitialMessages);
-
       socket.off('new_message', handleNewMessage);
     };
   }, [arrMessages]);
@@ -72,10 +86,13 @@ const ChatComponent: React.FC = () => {
       <ContainerMessages>
         <List>
           {arrMessages.map((message: any, index: any) => (
-          <ListItems key={index}>
-            <Author>{message.author}</Author>
-            <Span>{message.content}</Span>
-          </ListItems>
+            <ListItems
+              key={index}
+              className={`${author === message.author ? 'owner' : 'other'}`}
+            >
+              <Author>{message.author}</Author>
+              <Span>{message.content}</Span>
+            </ListItems>
           ))}
         </List>
       </ContainerMessages>
@@ -86,6 +103,7 @@ const ChatComponent: React.FC = () => {
           value={author}
           placeholder="Digite o autor"
           onChange={handleAuthorChange}
+          className={visibility}
         />
         <InputMessage
           name="content"

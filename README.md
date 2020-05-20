@@ -62,9 +62,10 @@
 
 ## To do
 
-  1. Add more features;
-  2. Do more tests;
-  3. Implement docker and docker-compose;
+  1. Use socket.id -> (const socketId = socket.id);
+  2. Implement more features;
+  3. Do more tests;
+  4. Implement docker and docker-compose;
 
 ## qemuridama
 
