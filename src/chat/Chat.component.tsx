@@ -72,12 +72,10 @@ const ChatComponent: React.FC = () => {
       setArrMessages(arrMessages);
 
     socket.on('initial_messages', loadInitialMessages);
-
     socket.on('new_message', handleNewMessage);
 
     return () => {
       socket.off('initial_messages', loadInitialMessages);
-
       socket.off('new_message', handleNewMessage);
     };
   }, [arrMessages]);
@@ -91,7 +89,6 @@ const ChatComponent: React.FC = () => {
             <ListItems
               key={index}
               className={`${author === message.author ? 'owner' : 'other'}`}
-              // owner={`${author && message.author}`}
             >
               <Author>{message.author}</Author>
               <Span>{message.content}</Span>

@@ -2,10 +2,6 @@ import styled from 'styled-components';
 
 import { colors } from '~/assets/styles/variables';
 
-interface ListItemsInterface {
-  owner?: string
-}
-
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -59,7 +55,6 @@ export const ListItems = styled.li`
   margin-bottom: 10px;
   padding: 10px;
   border-bottom: 1px solid #ececec;
-  /* text-align: ${(props: ListItemsInterface) => (props.owner ? 'right' : 'left')}; */
 
   &.owner {
     text-align: right;
